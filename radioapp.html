@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet Radio</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .radio-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            width: 90vw;
+            max-width: 430px;
+        }
+        .radio-button {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 10px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+            background-color: black;
+        }
+        .radio-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="radio-buttons">
+        <div class="radio-button" onclick="playStream('https://stream-relay-geo.ntslive.net/stream?client=NTSWebApp&t=1663095867072')">
+            <img src="https://cdn-profiles.tunein.com/s150238/images/logog.jpg?t=159537" alt="NTS 1">
+        </div>
+        <div class="radio-button" onclick="playStream('https://stream-relay-geo.ntslive.net/stream2?client=NTSWebApp&t=1663096772944')">
+            <img src="https://cdn-profiles.tunein.com/s286827/images/logog.jpg?t=159537" alt="NTS 2">
+        </div>
+        <div class="radio-button" onclick="playStream('https://lstn.lv/bbcradio.m3u8?station=bbc_1xtra%22&bitrate=320000%22')">
+            <img src="https://i1.sndcdn.com/artworks-pVjowEh4gbNzFhyt-g7TYUg-t1080x1080.jpg" alt="BBC 1Xtra">
+        </div>
+        <div class="radio-button" onclick="playStream('https://dublab.out.airtime.pro/dublab_a')">
+            <img src="https://www.dublab.com/img/dublab_default_file.80cf8e13.png" alt="Dublab">
+        </div>
+        <div class="radio-button" onclick="playStream('https://admin.stream.rinse.fm/proxy/rinse_uk/stream')">
+            <img src="https://yt3.googleusercontent.com/9qHZ9mhv26M1TjICcFUsP5Gwpgv5uG2nOkMuML_1qt4iIEVCHWD6xefjkYclB7hW8d4afdUF=s900-c-k-c0x00ffffff-no-rj" alt="Rinse FM">
+        </div>
+        <div class="radio-button" onclick="playStream('http://media-the.musicradio.com/SmoothLondon')">
+            <img src="https://cdn-profiles.tunein.com/s332575/images/logog.jpg?t=1" alt="Smooth Radio">
+        </div>
+        <div class="radio-button" onclick="playStream('http://worldwidefm.out.airtime.pro:8000/worldwidefm_a')">
+            <img src="https://i1.sndcdn.com/artworks-000248227272-law6he-t500x500.jpg" alt="Worldwide FM">
+        </div>
+        <div class="radio-button" onclick="playStream('https://lowergrandradio.out.airtime.pro:8000/lowergrandradio_a')">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4OlvkVM-a5Dxz9oIY9KuGp0dfCR0VdHin4g&s" alt="Lower Grand Radio">
+        </div>
+    </div>
+    
+    <audio id="audioPlayer" controls style="display: none;"></audio>
+    
+    <script>
+        let currentAudio = document.getElementById("audioPlayer");
+        function playStream(url) {
+            if (currentAudio.src !== url) {
+                currentAudio.src = url;
+                currentAudio.play();
+            } else if (!currentAudio.paused) {
+                currentAudio.pause();
+            } else {
+                currentAudio.play();
+            }
+        }
+    </script>
+</body>
+</html>
